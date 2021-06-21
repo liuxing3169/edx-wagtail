@@ -15,3 +15,5 @@ python cms/manage.py runserver
 # Deploy with open edx
 
 # License
+The code in this repository is licensed under version 3 of the AGPL unless otherwise noted. Please see the [LICENSE](../main/LICENSE) file for details.
+
