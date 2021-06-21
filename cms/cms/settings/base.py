@@ -35,25 +35,26 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 DEBUG = False
 
-CONFIG_FILE = get_env_setting('WAGTAIL_CFG')
+# CONFIG_FILE = get_env_setting('WAGTAIL_CFG')
 
-with codecs.open(CONFIG_FILE, encoding='utf-8') as f:
-    __config__ = yaml.safe_load(f)
+# with codecs.open(CONFIG_FILE, encoding='utf-8') as f:
+#     __config__ = yaml.safe_load(f)
 
-    # ENV_TOKENS and AUTH_TOKENS are included for reverse compatability.
-    # Removing them may break plugins that rely on them.
-    ENV_TOKENS = __config__
-    AUTH_TOKENS = __config__
+#     # ENV_TOKENS and AUTH_TOKENS are included for reverse compatability.
+#     # Removing them may break plugins that rely on them.
+#     ENV_TOKENS = __config__
+#     AUTH_TOKENS = __config__
 
-    # Add the key/values from config into the global namespace of this module.
-    # But don't override the FEATURES dict because we do that in an additive way.
-    __config_copy__ = copy.deepcopy(__config__)
-    vars().update(__config_copy__)
+#     # Add the key/values from config into the global namespace of this module.
+#     # But don't override the FEATURES dict because we do that in an additive way.
+#     __config_copy__ = copy.deepcopy(__config__)
+#     vars().update(__config_copy__)
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'cms',
     'home',
     'search',
 
@@ -118,28 +119,28 @@ WSGI_APPLICATION = 'cms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
 
-DATABASES = AUTH_TOKENS['DATABASES']
+# DATABASES = AUTH_TOKENS['DATABASES']
 
-# The normal database user does not have enough permissions to run migrations.  
-# Migrations are run with separate credentials, given as DB_MIGRATION_*   
-# environment variables
-for name, database in DATABASES.items():
-    if name != 'read_replica':
-         database.update({
-             'ENGINE': os.environ.get('DB_MIGRATION_ENGINE', database['ENGINE']),
-             'USER': os.environ.get('DB_MIGRATION_USER', database['USER']),
-             'PASSWORD': os.environ.get('DB_MIGRATION_PASS', database['PASSWORD']),
-             'NAME': os.environ.get('DB_MIGRATION_NAME', database['NAME']),
-             'HOST': os.environ.get('DB_MIGRATION_HOST', database['HOST']), 
-             'PORT': os.environ.get('DB_MIGRATION_PORT', database['PORT']), 
-        })
+# # The normal database user does not have enough permissions to run migrations.  
+# # Migrations are run with separate credentials, given as DB_MIGRATION_*   
+# # environment variables
+# for name, database in DATABASES.items():
+#     if name != 'read_replica':
+#          database.update({
+#              'ENGINE': os.environ.get('DB_MIGRATION_ENGINE', database['ENGINE']),
+#              'USER': os.environ.get('DB_MIGRATION_USER', database['USER']),
+#              'PASSWORD': os.environ.get('DB_MIGRATION_PASS', database['PASSWORD']),
+#              'NAME': os.environ.get('DB_MIGRATION_NAME', database['NAME']),
+#              'HOST': os.environ.get('DB_MIGRATION_HOST', database['HOST']), 
+#              'PORT': os.environ.get('DB_MIGRATION_PORT', database['PORT']), 
+#         })
 
 
 SECRET_KEY = 'v9q)jf$eyau4*wn@h#4xd@=ps+7m^ea6*515s3+6%m*&z_6%cd'
@@ -209,21 +210,21 @@ WAGTAIL_SITE_NAME = "cms"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
 
-LOGGING = {
-  'version': 1,
-  'disable_existing_loggers': False,
-  'handlers': {
-    'file': {
-      'level': 'DEBUG',
-      'class': 'logging.FileHandler',
-      'filename': '/edx/var/log/wagtail/debug.log',
-    },
-  },
-  'loggers': {
-    'django': {
-      'handlers': ['file'],
-      'level': 'DEBUG',
-      'propagate': True,
-    },
-  },
-}
+# LOGGING = {
+#   'version': 1,
+#   'disable_existing_loggers': False,
+#   'handlers': {
+#     'file': {
+#       'level': 'DEBUG',
+#       'class': 'logging.FileHandler',
+#       'filename': '/edx/var/log/wagtail/debug.log',
+#     },
+#   },
+#   'loggers': {
+#     'django': {
+#       'handlers': ['file'],
+#       'level': 'DEBUG',
+#       'propagate': True,
+#     },
+#   },
+# }

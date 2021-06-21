@@ -1,21 +1,442 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block body_class %}template-homepage{% endblock %}
-
-{% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-{% endblock extra_css %}
+{% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+<!-- Home -->
+<div id="home" class="hero-area">
 
-{% endblock content %}
+{% image page.image fill-1920x600 as image %}
+  <!-- Backgound Image -->
+  <div class="bg-image bg-parallax overlay" style="background-image:url('{{ image.url }}')"></div>
+  <!-- /Backgound Image -->
+
+  <div class="home-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h1 class="white-text">{{ page.hero_text }}</h1>
+          <p class="lead white-text">{{ page.hero_cta}}</p>
+          {% if page.hero_cta_link %}
+            <a class="main-button icon-button" href="{% pageurl page.hero_cta_link %}">{{ page.hero_cta }}</a>
+          {% else %}
+            {{ page.hero_cta }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /Home -->
+
+<!-- About -->
+<div id="about" class="section">
+
+  <!-- container -->
+  <div class="container">
+
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="section-header">
+          <h2>{{ page.welcome_title }}</h2>
+          <p class="lead">{{ page.welcome_text }}</p>
+        </div>
+
+        <!-- feature -->
+        <div class="feature">
+          <i class="feature-icon fa {{ page.featured_section_1_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.featured_section_1_title }}</h4>
+            <p>{{ page.featured_section_1_text }}</p>
+          </div>
+        </div>
+        <!-- /feature -->
+
+        <!-- feature -->
+        <div class="feature">
+          <i class="feature-icon fa {{ page.featured_section_2_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.featured_section_2_title }}</h4>
+            <p>{{ page.featured_section_2_text }}</p>
+          </div>
+        </div>
+        <!-- /feature -->
+
+        <!-- feature -->
+        <div class="feature">
+          <i class="feature-icon fa {{ page.featured_section_3_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.featured_section_3_title }}</h4>
+            <p>{{ page.featured_section_3_text }}</p>
+          </div>
+        </div>
+        <!-- /feature -->
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="about-img">
+          {% image page.featured_image fill-555x470-c100 %}
+        </div>
+      </div>
+
+    </div>
+    <!-- row -->
+
+  </div>
+  <!-- container -->
+</div>
+<!-- /About -->
+
+<!-- Courses -->
+<div id="courses" class="section">
+
+  <!-- container -->
+  <div class="container">
+
+    <!-- row -->
+    <div class="row">
+      <div class="section-header text-center">
+        <h2>{{ page.explore_courses_title }}</h2>
+        <p class="lead">{{ page.explore_courses_text }}</p>
+      </div>
+    </div>
+    <!-- /row -->
+
+    <!-- courses -->
+    <div id="courses-wrapper">
+
+      <!-- row -->
+      <div class="row">
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_1_link }}" class="course-img">
+              {% image page.recommended_course_1_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_1_link }}">{{ page.recommended_course_1_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_1_category }}</span>
+              {% if page.recommended_course_1_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_1_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_1_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_2_link }}" class="course-img">
+              {% image page.recommended_course_2_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_2_link }}">{{ page.recommended_course_2_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_2_category }}</span>
+              {% if page.recommended_course_2_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_2_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_2_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_3_link }}" class="course-img">
+              {% image page.recommended_course_3_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_3_link }}">{{ page.recommended_course_3_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_3_category }}</span>
+              {% if page.recommended_course_3_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_3_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_3_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_4_link }}" class="course-img">
+              {% image page.recommended_course_4_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_4_link }}">{{ page.recommended_course_4_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_4_category }}</span>
+              {% if page.recommended_course_4_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_4_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_4_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+      </div>
+      <!-- /row -->
+
+      <!-- row -->
+      <div class="row">
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_5_link }}" class="course-img">
+              {% image page.recommended_course_5_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_5_link }}">{{ page.recommended_course_5_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_5_category }}</span>
+              {% if page.recommended_course_5_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_5_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_5_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_6_link }}" class="course-img">
+              {% image page.recommended_course_6_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_6_link }}">{{ page.recommended_course_6_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_6_category }}</span>
+              {% if page.recommended_course_6_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_6_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_6_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_7_link }}" class="course-img">
+              {% image page.recommended_course_7_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_7_link }}">{{ page.recommended_course_7_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_7_category }}</span>
+              {% if page.recommended_course_7_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_7_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_7_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+
+        <!-- single course -->
+        <div class="col-md-3 col-sm-6 col-xs-6">
+          <div class="course">
+            <a href="{{ page.recommended_course_8_link }}" class="course-img">
+              {% image page.recommended_course_8_image fill-262x175-c100 %}
+              <i class="course-link-icon fa fa-link"></i>
+            </a>
+            <a class="course-title" href="{{ page.recommended_course_8_link }}">{{ page.recommended_course_8_name }}</a>
+            <div class="course-details">
+              <span class="course-category">{{ page.recommended_course_8_category }}</span>
+              {% if page.recommended_course_8_price == "Free" %}
+                <span class="course-price course-free">{{ page.recommended_course_8_price }}</span>
+              {% else %}
+                <span class="course-price course-premium">{{ page.recommended_course_8_price }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- /single course -->
+
+      </div>
+      <!-- /row -->
+
+    </div>
+    <!-- /courses -->
+
+    <div class="row">
+      <div class="center-btn">
+        <a class="main-button icon-button" href="{{ page.more_courses_link }}">{{ page.more_courses_text }}</a>
+      </div>
+    </div>
+
+  </div>
+  <!-- container -->
+
+</div>
+<!-- /Courses -->
+
+<!-- Action -->
+<div id="cta" class="section">
+
+  <!-- Backgound Image -->
+  {% image page.action_background_image fill-1920x600 as action_background_image %}
+  <div class="bg-image bg-parallax overlay" style="background-image:url('{{ action_background_image.url }}')"></div>
+  <!-- /Backgound Image -->
+
+  <!-- container -->
+  <div class="container">
+
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <h2 class="white-text">{{ page.benefit_title }}</h2>
+        <p class="lead white-text">{{ page.benefit_text }}</p>
+        <a class="main-button icon-button" href="{{ page.action_link }}">{{ page.action_text }}</a>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- /container -->
+
+</div>
+<!-- /Action -->
+
+<!-- Why us -->
+<div id="why-us" class="section">
+
+  <!-- container -->
+  <div class="container">
+
+    <!-- row -->
+    <div class="row">
+      <div class="section-header text-center">
+        <h2>{{ page.why_us_title }}</h2>
+        <p class="lead">{{ page.why_us_text }}</p>
+      </div>
+
+      <!-- feature -->
+      <div class="col-md-4">
+        <div class="feature">
+          <i class="feature-icon fa {{ page.reason_1_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.reason_1_title }}</h4>
+            <p>{{ page.reason_1_text }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- /feature -->
+
+      <!-- feature -->
+      <div class="col-md-4">
+        <div class="feature">
+          <i class="feature-icon fa {{ page.reason_2_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.reason_2_title }}</h4>
+            <p>{{ page.reason_2_text }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- /feature -->
+
+      <!-- feature -->
+      <div class="col-md-4">
+        <div class="feature">
+          <i class="feature-icon fa {{ page.reason_3_icon_name }}"></i>
+          <div class="feature-content">
+            <h4>{{ page.reason_3_title }}</h4>
+            <p>{{ page.reason_3_text }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- /feature -->
+
+    </div>
+    <!-- /row -->
+
+    <hr class="section-hr">
+
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <h3>{{ page.what_we_offer_title }}</h3>
+        <span>
+          {{ page.what_we_offer_text }}
+        </span>
+      </div>
+
+      <div class="col-md-5 col-md-offset-1">
+        <a class="about-video" href="{{ page.video_link }}">
+          <img src="{{ page.video_cover_image }}" alt="">
+          <i class="play-icon fa fa-play"></i>
+        </a>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- /container -->
+
+</div>
+<!-- /Why us -->
+
+<!-- Contact CTA -->
+<div id="contact-cta" class="section">
+
+  <!-- Backgound Image -->
+  {% image page.contact_background_image fill-1920x600 as contact_background_image %}
+  <div class="bg-image bg-parallax overlay" style="background-image:url('{{ contact_background_image.url }}')"></div>
+  <!-- Backgound Image -->
+
+  <!-- container -->
+  <div class="container">
+
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <h2 class="white-text">{{ page.contact_title }}</h2>
+        <p class="lead white-text">{{ page.contact_text }}</p>
+        <a class="main-button icon-button" href="{{ page.contact_now_text }}">{{ page.contact_now_link }}</a>
+      </div>
+
+    </div>
+    <!-- /row -->
+
+  </div>
+  <!-- /container -->
+
+</div>
+<!-- /Contact CTA -->
+
+<!-- preloader -->
+<div id='preloader'><div class='preloader'></div></div>
+<!-- /preloader -->
+
+{% endblock %}

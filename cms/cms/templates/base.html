@@ -1,40 +1,31 @@
-{% load static wagtailuserbar %}
+{% load navigation_tags static wagtailuserbar %}
 
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+{% block head %}
+    {% include "includes/head.html" %}
+{% endblock head %}
 
-        {# Global stylesheets #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/cms.css' %}">
+<body>
+    {% wagtailuserbar %}
 
-        {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
-    </head>
+    {% block header %}
+        {# Header contains the main_navigation block #}
+        {% include "includes/header.html" with parent=site_root calling_page=self %}
+    {% endblock %}
+    
+    {% block content %}{% endblock %}
+    
+    {% block footer %}
+        {% include "includes/footer.html" %}
+    {% endblock %}
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+    {# Global javascript #}
+    <!-- jQuery Plugins -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
-        {% block content %}{% endblock %}
-
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/cms.js' %}"></script>
-
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
-    </body>
+    {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
 </html>
