@@ -386,13 +386,14 @@
       <div class="col-md-6">
         <h3>{{ page.what_we_offer_title }}</h3>
         <span>
-          {{ page.what_we_offer_text }}
+          {{ page.what_we_offer_text|safe }}
         </span>
       </div>
 
       <div class="col-md-5 col-md-offset-1">
         <a class="about-video" href="{{ page.video_link }}">
-          <img src="{{ page.video_cover_image }}" alt="">
+	  {% image page.video_cover_image fill-457x305 as video_cover_image %}
+          <img src="{{ video_cover_image.url }}" alt="">
           <i class="play-icon fa fa-play"></i>
         </a>
       </div>
@@ -422,8 +423,8 @@
 
       <div class="col-md-8 col-md-offset-2 text-center">
         <h2 class="white-text">{{ page.contact_title }}</h2>
-        <p class="lead white-text">{{ page.contact_text }}</p>
-        <a class="main-button icon-button" href="{{ page.contact_now_text }}">{{ page.contact_now_link }}</a>
+        <p class="lead white-text">{{ page.contact_text|safe }}</p>
+        <a class="main-button icon-button" href="{{ page.contact_now_link }}">{{ page.contact_now_text }}</a>
       </div>
 
     </div>
