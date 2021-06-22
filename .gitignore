@@ -5,3 +5,4 @@ cms/static/
 *.sqlite3
 cms/media/images/
 cms/media/original_images/
+*.log

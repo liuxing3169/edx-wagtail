@@ -210,21 +210,33 @@ WAGTAIL_SITE_NAME = "cms"
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
 
-# LOGGING = {
-#   'version': 1,
-#   'disable_existing_loggers': False,
-#   'handlers': {
-#     'file': {
-#       'level': 'DEBUG',
-#       'class': 'logging.FileHandler',
-#       'filename': '/edx/var/log/wagtail/debug.log',
-#     },
-#   },
-#   'loggers': {
-#     'django': {
-#       'handlers': ['file'],
-#       'level': 'DEBUG',
-#       'propagate': True,
-#     },
-#   },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            # 'filename': '/edx/var/log/wagtail/debug.log',
+            'filename': 'debug.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
