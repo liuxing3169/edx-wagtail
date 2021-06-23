@@ -59,7 +59,8 @@
     python cms/manage.py migrate
     deactivate
     ```
-5. Add wagtail to supervisor
+5. Change the value of 'SECRET_KEY' in '/cms/cms/settings/base.py' and 'cms/cms/settings/dev.py' to yourself. And change the value of 'ALLOWED_HOSTS' in 'cms/cms/settings/production.py' as what you actually use.
+6. Add wagtail to supervisor
     ```
     cd /edx/app/supervisor/conf.available.d
     touch wagtail.conf
@@ -132,7 +133,7 @@
 
     supervisor> exit
     ```
-6. Add wagtail to Nginx service
+7. Add wagtail to Nginx service
     ```
     cd /edx/app/nginx/sites-available
     touch wagtail
@@ -217,7 +218,7 @@
       }
     }
     ```
-7. Reload the Nginx service
+8. Reload the Nginx service
     ```
     cd /etc/nginx/sites-enabled
     sudo ln /edx/app/nginx/sites-available/wagtail wagtail
