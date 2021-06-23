@@ -1,7 +1,21 @@
 # edx-wagtail
 Wagtail is an open source content management system built on Django, with a strong community and commercial support. 
 It's focused on user experience, and offers precise control for designers and developers.  
-This is [Wagtail](https://github.com/wagtail/wagtail/) for Open edX.
+This is [Wagtail](https://github.com/wagtail/wagtail/) for Open edX.  
+Notice : This code repository is at an early stage, and there are still a lot of unimplemented features. I look forward to your suggestions or direct contributions. 
+
+
+# Preview
+- [HomePage PreView ](docs/preview/homepage-preview.png)
+- [Wagtail Sign in](docs/preview/homepage-preview.png)
+- [Wagtail admin](docs/preview/homepage-preview.png)  
+↑ Click to preview the picture
+
+# Main Features
+- Customize various pictures, texts and links on the homepage
+- Dynamically publish course updates to the homepage
+- Shared user system with open edx
+
 
 # Developers
 ```
@@ -13,6 +27,7 @@ python cms/manage.py runserver
 ```
 
 # Deploy with open edx
+Please refer [INSTALL STEP BY STEP](docs/INSTALL-STEP-BY-STEP) for manual installation
 
 # License
 The code in this repository is licensed under version 3 of the AGPL unless otherwise noted. Please see the [LICENSE](../main/LICENSE) file for details.
