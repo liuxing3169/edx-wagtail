@@ -7,8 +7,8 @@ Notice : This code repository is at an early stage, and there are still a lot of
 
 # Preview
 - [HomePage PreView ](docs/preview/homepage-preview.png)
-- [Wagtail Sign in](docs/preview/homepage-preview.png)
-- [Wagtail admin](docs/preview/homepage-preview.png)  
+- [Wagtail Sign in](docs/preview/wagtail-admin-login.png)
+- [Wagtail admin](docs/preview/wagtail-admin.png)  
 ↑ Click to preview the picture
 
 # Main Features
@@ -28,6 +28,9 @@ python cms/manage.py runserver
 
 # Deploy with open edx
 Please refer [INSTALL STEP BY STEP](docs/INSTALL-STEP-BY-STEP) for manual installation
+
+# How to Contribute
+Contributions are welcome! The fastest way to give feedback is to create an Issue.
 
 # License
 The code in this repository is licensed under version 3 of the AGPL unless otherwise noted. Please see the [LICENSE](../main/LICENSE) file for details.
