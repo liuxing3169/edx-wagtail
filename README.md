@@ -27,7 +27,7 @@ python cms/manage.py runserver
 ```
 
 # Deploy with open edx
-Please refer [INSTALL STEP BY STEP](docs/INSTALL-STEP-BY-STEP) for manual installation
+Please refer [INSTALL STEP BY STEP](docs/INSTALL-STEP-BY-STEP.md) for manual installation
 
 # How to Contribute
 Contributions are welcome! The fastest way to give feedback is to create an Issue.
