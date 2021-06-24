@@ -83,29 +83,14 @@
     ```
     sudo chown supervisor:supervisor wagtail.conf
     ```
-    Reload the supervisor service to add wagtail to the services
+    Add supervisor softlink and reload the supervisor service to add wagtail to the services
     ```
-    # sudo /edx/bin/supervisorctl 
-    analytics_api                    RUNNING   pid 1385, uptime 1 day, 0:38:03
-    certs                            RUNNING   pid 1388, uptime 1 day, 0:38:03
-    cms                              RUNNING   pid 1392, uptime 1 day, 0:38:03
-    discovery                        RUNNING   pid 1395, uptime 1 day, 0:38:03
-    ecommerce                        RUNNING   pid 1396, uptime 1 day, 0:38:03
-    ecomworker                       RUNNING   pid 1397, uptime 1 day, 0:38:03
-    edxapp_worker:cms_default_1      RUNNING   pid 1398, uptime 1 day, 0:38:03
-    edxapp_worker:cms_high_1         RUNNING   pid 1399, uptime 1 day, 0:38:03
-    edxapp_worker:lms_default_1      RUNNING   pid 1400, uptime 1 day, 0:38:03
-    edxapp_worker:lms_high_1         RUNNING   pid 1401, uptime 1 day, 0:38:03
-    edxapp_worker:lms_high_mem_1     RUNNING   pid 1402, uptime 1 day, 0:38:03
-    forum                            RUNNING   pid 1404, uptime 1 day, 0:38:03
-    insights                         RUNNING   pid 1405, uptime 1 day, 0:38:03
-    lms                              RUNNING   pid 1407, uptime 1 day, 0:38:03
-    xqueue                           RUNNING   pid 1410, uptime 1 day, 0:38:03
-    xqueue_consumer                  RUNNING   pid 1411, uptime 1 day, 0:38:03
-    supervisor> reload
-    Really restart the remote supervisord process y/N? y
-    Restarted supervisord
-    supervisor> status
+    cd /edx/app/supervisor/conf.d
+    sudo ln /edx/app/supervisor/conf.available.d/wagtail.conf wagtail.conf
+    sudo chmod +x /edx/app/edx-wagtail/wagtail.sh
+    sudo /edx/bin/supervisorctl reload
+    sudo /edx/bin/supervisorctl restart all
+    # sudo /edx/bin/supervisorctl status
     analytics_api                    RUNNING   pid 27040, uptime 0:00:13
     certs                            RUNNING   pid 27041, uptime 0:00:13
     cms                              RUNNING   pid 27042, uptime 0:00:13
@@ -123,15 +108,6 @@
     wagtail                          RUNNING   pid 27055, uptime 0:00:13
     xqueue                           RUNNING   pid 27056, uptime 0:00:13
     xqueue_consumer                  RUNNING   pid 27057, uptime 0:00:13
-    supervisor> help
-
-    default commands (type help <topic>):
-    =====================================
-    add    exit      open  reload  restart   start   tail   
-    avail  fg        pid   remove  shutdown  status  update 
-    clear  maintail  quit  reread  signal    stop    version
-
-    supervisor> exit
     ```
 7. Add wagtail to Nginx service
     ```
